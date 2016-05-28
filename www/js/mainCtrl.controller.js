@@ -49,5 +49,12 @@ angular.module('starter')
 					$scope.allNoteClipz.push(obj);
 				}
 			});
+
+			//
+			// Remove the clip
+			//
+			$scope.removeClip = function (index) {
+				$scope.allNoteClipz.splice(index, 1);
+			};
 		};
 	});
