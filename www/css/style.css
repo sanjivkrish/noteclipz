@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+ion-footer-bar{
+  justify-content: center;
+}
+
+.closeIcon {
+  float: right;
+}
+
+.closeIcon {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
