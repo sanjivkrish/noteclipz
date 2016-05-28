@@ -6,6 +6,12 @@ angular.module('starter')
 		//
 		$scope.allNoteClipz = [];
 
+		// window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
+
+		if (window.localStorage.getItem("noteClipz") !== undefined
+				&& JSON.parse(window.localStorage.getItem("noteClipz")) !== "") {
+			$scope.allNoteClipz = JSON.parse(window.localStorage.getItem("noteClipz"));
+		}
 		//
 		// Prompt user to enter input
 		//
@@ -40,21 +46,24 @@ angular.module('starter')
 			//
 			myPopup.then(function(res) {
 				if (res != undefined) {
-				    var obj = {};
+			    var obj = {};
 
-				    obj.tag = res.tag;
+			    obj.tag = res.tag;
 					obj.content = res.content;
 					obj.date = '';
 
 					$scope.allNoteClipz.push(obj);
+					window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
 				}
 			});
 
-			//
-			// Remove the clip
-			//
-			$scope.removeClip = function (index) {
-				$scope.allNoteClipz.splice(index, 1);
-			};
+		};
+
+		//
+		// Remove the clip
+		//
+		$scope.removeClip = function (index) {
+			$scope.allNoteClipz.splice(index, 1);
+			window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
 		};
 	});
