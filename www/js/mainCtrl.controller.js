@@ -1,16 +1,16 @@
 angular.module('starter')
-	.controller('mainCtrl', function($scope, $ionicPopup) {
+	.controller('mainCtrl', function($scope, $ionicPopup, localStorageService) {
 
 		//
 		// Array to store all clipz
 		//
 		$scope.allNoteClipz = [];
 
-
-		// window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
-
-		if (window.localStorage.getItem("noteClipz") in ['', null, undefined]) {
-			$scope.allNoteClipz = JSON.parse(window.localStorage.getItem("noteClipz"));
+		if (['', null, undefined].indexOf(localStorageService.get("noteClipz")) < 0) {
+			$scope.allNoteClipz = localStorageService.get("noteClipz");
+			if (!$scope.allNoteClipz.hasOwnProperty('length')) {
+				$scope.allNoteClipz = [];
+			}
 		}
 		//
 		// Prompt user to enter input
@@ -53,7 +53,7 @@ angular.module('starter')
 					obj.date = '';
 
 					$scope.allNoteClipz.push(obj);
-					window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
+					localStorageService.set("noteClipz", $scope.allNoteClipz);
 				}
 			});
 
@@ -64,6 +64,6 @@ angular.module('starter')
 		//
 		$scope.removeClip = function (index) {
 			$scope.allNoteClipz.splice(index, 1);
-			window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
+			localStorageService.set("noteClipz", $scope.allNoteClipz);
 		};
 	});
