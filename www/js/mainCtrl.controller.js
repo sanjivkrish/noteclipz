@@ -6,10 +6,10 @@ angular.module('starter')
 		//
 		$scope.allNoteClipz = [];
 
+
 		// window.localStorage.setItem("noteClipz", JSON.stringify($scope.allNoteClipz));
 
-		if (window.localStorage.getItem("noteClipz") !== undefined
-				&& JSON.parse(window.localStorage.getItem("noteClipz")) !== "") {
+		if (window.localStorage.getItem("noteClipz") in ['', null, undefined]) {
 			$scope.allNoteClipz = JSON.parse(window.localStorage.getItem("noteClipz"));
 		}
 		//
