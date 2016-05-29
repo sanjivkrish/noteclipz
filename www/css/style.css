@@ -3,11 +3,14 @@ ion-footer-bar{
   justify-content: center;
 }
 
-.closeIcon {
+.closeIconContainer {
   float: right;
+  width: 5%;
+  height: 20px;
 }
 
 .closeIcon {
+  float: right;
   width: 12px;
   height: 12px;
   cursor: pointer;
